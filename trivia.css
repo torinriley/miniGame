@@ -159,17 +159,16 @@ button:disabled {
     background-color: #666;
 }
 
-/* Icon Styling */
 .icon {
     position: absolute;
-    right: -50px; /* Start off to the right */
+    right: -50px;
     opacity: 0;
     transition: right 0.3s ease, opacity 0.3s ease;
 }
 
 .icon img {
-    width: 40px; /* Larger icon size */
-    height: 40px; /* Larger icon size */
+    width: 40px;
+    height: 40px;
 }
 
 /* Show Icon on Hover */
