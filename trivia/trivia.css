@@ -1,0 +1,252 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333;
+    color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.game-container {
+    text-align: center;
+    width: 300px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.card {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: #6aaa64;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #589a4e;
+}
+
+button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+}
+
+.choices {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.choice {
+    padding: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.choice:hover {
+    background-color: #666;
+}
+
+.choice.correct {
+    background: rgba(0, 128, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.choice.incorrect {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.end-round-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.end-round-button:hover {
+    background-color: #ff3333;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.3s forwards ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.flip-in {
+    animation: flipIn 0.5s forwards;
+}
+
+@keyframes flipIn {
+    from {
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Basic Button Styling */
+.category-button {
+    position: relative;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.category-button:hover {
+    background-color: #666;
+}
+
+/* Icon Styling */
+.icon {
+    position: absolute;
+    right: -50px; /* Start off to the right */
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.icon img {
+    width: 40px; /* Larger icon size */
+    height: 40px; /* Larger icon size */
+}
+
+/* Show Icon on Hover */
+.category-button:hover .icon {
+    right: 10px; /* Slide to the end of the button */
+    opacity: 1; /* Fade in */
+}
+
+/* Vertical Navigation Bar */
+.vertical-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--square-bg-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--button-hover-color);
+    color: var(--text-color);
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Scale up the trivia icon specifically */
+.nav-link[href="/trivia"]:hover .nav-icon {
+    transform: scale(1.2); /* Increase scale on hover */
+}
+
+/* Optional: Slight scale effect for other icons */
+.nav-link:not([href="/trivia"]):hover .nav-icon {
+    transform: scale(1.1);
+}
+
+.game-container {
+    margin-left: 100px; /* Space for the navigation bar */
+    padding-top: 20px;
+}
+
+/* End Round Button Styling */
+.end-round-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f8f8f8;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.end-round-button:hover {
+    background-color: #e63946;
+    transform: scale(1.05); /* Slight scaling on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.end-round-button:active {
+    transform: scale(0.98); /* Press-down effect */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}

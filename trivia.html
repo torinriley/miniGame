@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="/trivia/trivia.css">
+</head>
+<body class="dark-mode">
+    <!-- Vertical Navigation Bar -->
+    <nav class="vertical-nav">
+        <a href="word.html" class="nav-link">
+            <img src="/icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon">
+            <span>Word</span>
+        </a>
+        <a href="#trivia" class="nav-link">
+            <img src="/icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon">
+            <span>Trivia</span>
+        </a>
+    </nav>
+
+    <!-- Main Game Content -->
+    <div class="game-container">
+        <!-- Category Selection Screen -->
+        <div id="category-screen" class="screen active">
+            <h1>Select Trivia Category</h1>
+            <button onclick="selectCategory('general')" class="category-button">
+                General Trivia
+                <span class="icon general-icon">
+                    <img src="/icons/general-icon.svg" alt="General Icon">
+                </span>
+            </button>
+            <button onclick="selectCategory('coding')" class="category-button">
+                Coding Trivia
+                <span class="icon coding-icon">
+                    <img src="/icons/coding-icon.svg" alt="Coding Icon">
+                </span>
+            </button>
+            <button onclick="selectCategory('funny')" class="category-button">
+                Funny Trivia
+                <span class="icon funny-icon">
+                    <img src="/icons/funny-icon.svg" alt="Funny Icon">
+                </span>
+            </button>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="question-screen" class="screen">
+            <div id="question-card" class="card">
+                <h2 id="question-text"></h2>
+                <div id="choices-container" class="choices"></div>
+                <button onclick="nextQuestion()" id="next-button" disabled>Next</button>
+            </div>
+            <!-- Single End Round Button for the entire game session -->
+            <button class="end-round-button" onclick="endRound()">End Round</button>
+        </div>
+
+        <!-- End Screen -->
+        <div id="end-screen" class="screen">
+            <h1>Round Complete!</h1>
+            <p id="score-text"></p>
+            <div id="result-grid" class="result-grid"></div>
+            <button onclick="resetGame()">Back to Categories</button>
+        </div>
+    </div>
+    
+    <script src="/trivia/trivia.js"></script>
+</body>
+</html>

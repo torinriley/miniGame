@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="/word/word.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Vertical Navigation Bar -->
+    <nav class="vertical-nav">
+        <a href="#word" class="nav-link" title="Play Word Game">
+            <img src="icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon word-icon-dark">
+            <span>Word</span>
+        </a>
+        <a href="trivia.html" class="nav-link" title="Play Trivia Game">
+            <img src="icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon trivia-icon">
+            <span>Trivia</span>
+        </a>
+    </nav>
+
+    <!-- Main Game Content -->
+    <div class="content">
+        <div class="title-container">
+            <h1 class="title">Word Game</h1>
+        </div>
+        <div class="game-container">
+            <div id="grid" class="grid"></div>        
+            <button id="give-up" onclick="giveUp()">Reveal</button>
+            <button id="restart" onclick="restartGame()">Restart</button>
+        </div>
+    </div>
+
+    <script src="/word/word.js"></script>
+</body>
+</html>
