@@ -10,7 +10,7 @@ window.onload = async function() {
 
 async function loadWordList() {
     try {
-        const response = await fetch('/word/words.txt');
+        const response = await fetch('words.txt');
         const text = await response.text();
         wordList = text
             .split('\n')
