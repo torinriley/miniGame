@@ -23,7 +23,6 @@ async function loadWordList() {
         }
 
         targetWord = wordList[Math.floor(Math.random() * wordList.length)];
-        console.log("Target word (for debugging):", targetWord);
     } catch (error) {
         console.error("Error loading words:", error);
     }
