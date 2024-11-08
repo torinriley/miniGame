@@ -138,7 +138,6 @@ button:disabled {
 }
 
 
-/* Basic Button Styling */
 .category-button {
     position: relative;
     padding: 10px 20px;
@@ -171,13 +170,11 @@ button:disabled {
     height: 40px;
 }
 
-/* Show Icon on Hover */
 .category-button:hover .icon {
-    right: 10px; /* Slide to the end of the button */
-    opacity: 1; /* Fade in */
+    right: 10px;
+    opacity: 1; 
 }
 
-/* Vertical Navigation Bar */
 .vertical-nav {
     position: fixed;
     top: 20px;
@@ -210,22 +207,19 @@ button:disabled {
     transition: transform 0.3s ease;
 }
 
-/* Scale up the trivia icon specifically */
 .nav-link[href="/trivia"]:hover .nav-icon {
-    transform: scale(1.2); /* Increase scale on hover */
+    transform: scale(1.2);
 }
 
-/* Optional: Slight scale effect for other icons */
 .nav-link:not([href="/trivia"]):hover .nav-icon {
     transform: scale(1.1);
 }
 
 .game-container {
-    margin-left: 100px; /* Space for the navigation bar */
+    margin-left: 100px; 
     padding-top: 20px;
 }
 
-/* End Round Button Styling */
 .end-round-button {
     padding: 12px 24px;
     font-size: 1rem;
@@ -241,11 +235,11 @@ button:disabled {
 
 .end-round-button:hover {
     background-color: #e63946;
-    transform: scale(1.05); /* Slight scaling on hover */
+    transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .end-round-button:active {
-    transform: scale(0.98); /* Press-down effect */
+    transform: scale(0.98); 
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
