@@ -297,7 +297,6 @@ body.dark-mode button {
     animation: shake 0.5s;
 }
 
-/* Vertical Navigation Bar */
 .vertical-nav {
     position: fixed;
     top: 20px;
@@ -328,7 +327,6 @@ body.dark-mode button {
     transform: scale(1.2);
 }
 
-/* Main content offset to the right to accommodate the nav bar */
 .content {
     margin-left: 80px;
     padding-top: 20px;
