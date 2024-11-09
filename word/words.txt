@@ -15375,7 +15375,6 @@ tilde
 jingo
 bower
 serif
-facto
 belle
 inset
 bogus

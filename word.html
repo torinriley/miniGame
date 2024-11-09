@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
-    <link rel="stylesheet" href="word/word.css">
+    <title>Word Game</title>
+    <link rel="stylesheet" href="/word/word.css">
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
 </head>
 <body class="dark-mode">
-
     <!-- Vertical Navigation Bar -->
     <nav class="vertical-nav">
-        <a href="#word" class="nav-link" title="Play Word Game">
-            <img src="icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon word-icon-dark">
+        <a href="word.html" class="nav-link">
+            <img src="/icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon">
             <span>Word</span>
         </a>
-        <a href="trivia.html" class="nav-link" title="Play Trivia Game">
-            <img src="icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon trivia-icon">
+        <a href="trivia.html" class="nav-link">
+            <img src="/icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon">
             <span>Trivia</span>
         </a>
     </nav>
@@ -26,12 +26,26 @@
             <h1 class="title">Word Game</h1>
         </div>
         <div class="game-container">
-            <div id="grid" class="grid"></div>        
+            <div id="grid" class="grid"></div>
             <button id="give-up" onclick="giveUp()">Reveal</button>
             <button id="restart" onclick="restartGame()">Restart</button>
         </div>
     </div>
 
-    <script src="word/word.js"></script>
+    <button id="open-notebook" onclick="toggleNotebook()">
+        <img src="icons/notebook-icon.svg" alt="Open Notebook">
+    </button>
+
+    <!-- Notebook popup container -->
+    <div id="notebook-popup" class="notebook hidden">
+        <div class="notebook-header">
+            <h2>Notebook</h2>
+            <button onclick="toggleNotebook()" class="close-notebook">✕</button>
+        </div>
+        <textarea id="notebook-content" placeholder="Jot down your ideas here..."></textarea>
+    </div>
+
+
+    <script src="/word/word.js"></script>
 </body>
 </html>

@@ -201,3 +201,35 @@ function giveUp() {
 function toggleTheme() {
     document.body.classList.toggle("dark-mode");
 }
+
+// Toggle the notebook open and closed
+function toggleNotebook() {
+    const notebook = document.getElementById("notebook-popup");
+    
+    // Toggle hidden and show classes for sliding animation
+    if (notebook.classList.contains("hidden")) {
+        notebook.classList.remove("hidden");
+        notebook.classList.add("show");
+        
+        // Delay to allow the notebook to open fully
+        setTimeout(() => {
+            document.addEventListener("click", closeNotebookOnClickOutside);
+        }, 0);
+    } else {
+        notebook.classList.remove("show");
+        notebook.classList.add("hidden");
+        document.removeEventListener("click", closeNotebookOnClickOutside);
+    }
+}
+
+// Close the notebook when clicking outside
+function closeNotebookOnClickOutside(event) {
+    const notebook = document.getElementById("notebook-popup");
+    const openNotebookButton = document.getElementById("open-notebook");
+
+    if (!notebook.contains(event.target) && event.target !== openNotebookButton) {
+        notebook.classList.remove("show");
+        notebook.classList.add("hidden");
+        document.removeEventListener("click", closeNotebookOnClickOutside);
+    }
+}
