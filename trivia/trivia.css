@@ -219,28 +219,31 @@ button:disabled {
     margin-left: 100px; 
     padding-top: 20px;
 }
+
 .end-round-button {
-    padding: 12px 24px;
-    font-size: 1rem;
+    padding: 10px 20px;
+    font-size: 16px;
     font-weight: bold;
-    color: #f8f8f8;
-    background-color: rgba(255, 77, 77, 0.8);
-    border: none;
+    color: #ff4d4d; /* Red color for the button text */
+    background-color: transparent;
+    border: 2px solid #ff4d4d; /* Red border */
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 50%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    margin-top: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .end-round-button:hover {
-    background-color: #e63946;
-    transform: scale(1.05);
+    background-color: rgba(255, 77, 77, 0.2); /* Light red background on hover */
+    color: #ffffff; /* White text on hover */
+    border-color: rgba(255, 77, 77, 0.5); /* Softer red border on hover */
+    opacity: 0.9;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -248,14 +251,3 @@ button:disabled {
     transform: scale(0.98); 
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-.end-round-button:hover {
-    background-color: #e63946;
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.end-round-button:active {
-    transform: scale(0.98); 
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
