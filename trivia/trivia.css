@@ -224,9 +224,9 @@ button:disabled {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    color: #ff4d4d; /* Red color for the button text */
+    color: #ff4d4d; 
     background-color: transparent;
-    border: 2px solid #ff4d4d; /* Red border */
+    border: 2px solid #ff4d4d;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
@@ -240,9 +240,9 @@ button:disabled {
 }
 
 .end-round-button:hover {
-    background-color: rgba(255, 77, 77, 0.2); /* Light red background on hover */
-    color: #ffffff; /* White text on hover */
-    border-color: rgba(255, 77, 77, 0.5); /* Softer red border on hover */
+    background-color: rgba(255, 77, 77, 0.2);
+    color: #ffffff;
+    border-color: rgba(255, 77, 77, 0.5); 
     opacity: 0.9;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
