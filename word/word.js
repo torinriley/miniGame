@@ -27,47 +27,6 @@ async function loadWordList() {
         console.error("Error loading words:", error);
     }
 }
-function createGrid() {
-    const grid = document.getElementById("grid");
-    grid.innerHTML = "";
-
-    for (let i = 0; i < 6; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-
-        for (let j = 0; j < 5; j++) {
-            const square = document.createElement("input");
-            square.classList.add("square");
-            square.type = "text"; 
-            square.maxLength = 1;
-            square.addEventListener("input", handleSquareInput); 
-            square.addEventListener("focus", (e) => {
-                if (i !== currentRow) {
-                    e.target.blur(); 
-                }
-            });
-            row.appendChild(square);
-        }
-        grid.appendChild(row);
-    }
-
-    const firstSquare = document.querySelector(".row .square");
-    if (firstSquare) {
-        firstSquare.focus(); 
-    }
-}
-
-function handleSquareInput(e) {
-    const square = e.target;
-    square.value = square.value.toUpperCase(); 
-
-    const nextSquare = square.nextElementSibling;
-    if (nextSquare) {
-        nextSquare.focus();
-    } else if (square.parentElement.nextElementSibling) {
-        square.parentElement.nextElementSibling.children[0].focus();
-    }
-}
 
 function moveFocus(e) {
     const nextSquare = e.target.nextElementSibling;
@@ -94,7 +53,6 @@ function submitGuess() {
     }
 
     completedRows++;
-
     const targetArray = targetWord.split("");
     const guessCopy = [...guessArray];
     const matchedIndexes = new Set();
@@ -135,18 +93,24 @@ function submitGuess() {
     }
 }
 
-function updateSquare(square, resultClass) {
-    square.classList.add(resultClass);
-}
-
 function displayMessage(message) {
     const messageDiv = document.getElementById("message");
+    if (!messageDiv) {
+        console.error("Message container is missing.");
+        return;
+    }
     messageDiv.textContent = message;
     messageDiv.classList.add("show");
 
     setTimeout(() => {
         messageDiv.classList.remove("show");
     }, 2000);
+}
+
+document.getElementById("submit-button").addEventListener("click", submitGuess);
+
+function updateSquare(square, resultClass) {
+    square.classList.add(resultClass);
 }
 
 function disableInputs() {
@@ -172,10 +136,9 @@ async function restartGame() {
     completedRows = 0;
     displayMessage("");
 
-    // Reset notebook content and hide it
     const notebook = document.getElementById("notebook-content");
     if (notebook) {
-        notebook.value = ""; // Clear the notebook content
+        notebook.value = "";
     }
 
     const notebookPopup = document.getElementById("notebook-popup");
@@ -206,16 +169,13 @@ function toggleTheme() {
     document.body.classList.toggle("dark-mode");
 }
 
-// Toggle the notebook open and closed
 function toggleNotebook() {
     const notebook = document.getElementById("notebook-popup");
     
-    // Toggle hidden and show classes for sliding animation
     if (notebook.classList.contains("hidden")) {
         notebook.classList.remove("hidden");
         notebook.classList.add("show");
         
-        // Delay to allow the notebook to open fully
         setTimeout(() => {
             document.addEventListener("click", closeNotebookOnClickOutside);
         }, 0);
@@ -226,7 +186,6 @@ function toggleNotebook() {
     }
 }
 
-// Close the notebook when clicking outside
 function closeNotebookOnClickOutside(event) {
     const notebook = document.getElementById("notebook-popup");
     const openNotebookButton = document.getElementById("open-notebook");
@@ -235,5 +194,67 @@ function closeNotebookOnClickOutside(event) {
         notebook.classList.remove("show");
         notebook.classList.add("hidden");
         document.removeEventListener("click", closeNotebookOnClickOutside);
+    }
+}
+
+document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        submitGuess();
+    }
+});
+
+function handleSquareInput(e) {
+    const square = e.target;
+    square.setAttribute("readonly", true);
+    
+    if (square.value.length === 1) {
+        const nextSquare = square.nextElementSibling;
+        if (nextSquare) {
+            nextSquare.focus();
+            nextSquare.removeAttribute("readonly");
+        }
+    }
+}
+
+function handleBackspace(e) {
+    const square = e.target;
+    square.removeAttribute("readonly"); 
+
+    if (e.key === "Backspace") {
+        if (square.value === "") {
+            const prevSquare = square.previousElementSibling;
+            if (prevSquare) {
+                prevSquare.value = "";
+                prevSquare.focus();
+                prevSquare.removeAttribute("readonly");
+            }
+        } else {
+            square.value = "";
+        }
+    }
+}
+
+function createGrid() {
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+    for (let i = 0; i < 6; i++) {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        for (let j = 0; j < 5; j++) {
+            const square = document.createElement("input");
+            square.classList.add("square");
+            square.setAttribute("maxlength", "1");
+
+            square.addEventListener("input", handleSquareInput);
+            square.addEventListener("keydown", handleBackspace);
+
+            row.appendChild(square);
+        }
+        grid.appendChild(row);
+    }
+
+    const firstSquare = document.querySelector(".row .square");
+    if (firstSquare) {
+        firstSquare.focus();
     }
 }
