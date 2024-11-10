@@ -469,6 +469,9 @@ body.dark-mode button {
         height: 40px;
         font-size: 18px;
         line-height: 40px;
+        width: 40px;  /* Adjusted width for mobile */
+        height: 40px; /* Adjusted height for mobile */
+        font-size: 20px; 
     }
     .title {
         font-size: 28px;
@@ -483,4 +486,12 @@ body.dark-mode button {
         width: 35px;
         height: 35px;
     }
+    #open-notebook, /* Hides the notebook toggle button */
+    #notebook-popup /* Hides the notebook popup */ {
+        display: none;
+    }
+}
+
+.square {
+    caret-color: transparent; /* Hides the blinking caret */
 }
