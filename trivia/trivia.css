@@ -221,33 +221,33 @@ button:disabled {
 }
 
 .end-round-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 1rem;
     font-weight: bold;
-    color: #ff4d4d; 
-    background-color: transparent;
-    border: 2px solid #ff4d4d;
-    border-radius: 8px;
+    color: #f8f8f8;
+    background: linear-gradient(145deg, rgba(255, 77, 77, 0.6), rgba(255, 100, 100, 0.3));
+    border: none;
+    border-radius: 15px;
     cursor: pointer;
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 50%;
-    margin: 20px auto;
+    margin: 0 auto;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* Glassmorphic Effects */
+    backdrop-filter: blur(15px) saturate(180%);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .end-round-button:hover {
-    background-color: rgba(255, 77, 77, 0.2);
-    color: #ffffff;
-    border-color: rgba(255, 77, 77, 0.5); 
-    opacity: 0.9;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, rgba(230, 57, 70, 0.7), rgba(240, 90, 100, 0.4));
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
 }
 
 .end-round-button:active {
-    transform: scale(0.98); 
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(0.97);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
 }

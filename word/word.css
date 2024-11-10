@@ -343,7 +343,7 @@ body.dark-mode button {
 
 
 
-/* Notebook toggle button */
+
 #open-notebook {
     position: fixed;
     bottom: 20px;
@@ -365,21 +365,21 @@ body.dark-mode button {
 }
 
 
-/* Slide-down effect when hiding notebook */
+
 .notebook.hidden {
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
 }
 
-/* Slide-up effect when showing notebook */
+
 .notebook.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-/* Notebook header */
+
 .notebook-header {
     display: flex;
     justify-content: space-between;
@@ -392,7 +392,7 @@ body.dark-mode button {
     margin: 0;
 }
 
-/* Close notebook button */
+
 .close-notebook {
     background: rgba(255, 255, 255, 0.15);
     border: none;
@@ -405,21 +405,18 @@ body.dark-mode button {
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover effect for the close button */
 .close-notebook:hover {
     background: rgba(255, 255, 255, 0.25);
     color: #000;
-    transform: scale(1.1); /* Slightly enlarges the button on hover */
+    transform: scale(1.1);
 }
 
-/* Click (active) effect for the close button */
 .close-notebook:active {
-    transform: scale(0.9); /* Scales down the button slightly on click */
-    opacity: 0; /* Fades out the button when clicked */
-    transition: transform 0.1s ease, opacity 0.3s ease; /* Quick transform with a smooth fade-out */
+    transform: scale(0.9); 
+    opacity: 0;
+    transition: transform 0.1s ease, opacity 0.3s ease; 
 }
 
-/* Notebook popup */
 .notebook {
     position: fixed;
     bottom: 20px;
@@ -433,19 +430,19 @@ body.dark-mode button {
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 15px; /* Adjusted padding for uniform spacing */
+    padding: 15px; 
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Notebook textarea */
+
 #notebook-content {
     flex-grow: 1;
     resize: none;
-    width: calc(100% - 20px); /* Adjust width to fit inside padding */
+    width: calc(100% - 20px); 
     padding: 10px;
-    margin-top: 10px; /* Adjust spacing below the header */
+    margin-top: 10px; 
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
@@ -454,4 +451,36 @@ body.dark-mode button {
     outline: none;
     box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
+}
+
+
+@media (max-width: 600px) {
+    .game-container {
+        margin-bottom: 15px;
+    }
+    .grid {
+        gap: 5px;
+    }
+    .row {
+        gap: 5px;
+    }
+    .square {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+    }
+    .title {
+        font-size: 28px;
+    }
+    button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    #open-notebook {
+        bottom: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+    }
 }
