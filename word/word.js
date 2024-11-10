@@ -27,53 +27,45 @@ async function loadWordList() {
         console.error("Error loading words:", error);
     }
 }
-
 function createGrid() {
     const grid = document.getElementById("grid");
     grid.innerHTML = "";
+
     for (let i = 0; i < 6; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
+
         for (let j = 0; j < 5; j++) {
             const square = document.createElement("input");
             square.classList.add("square");
-            square.setAttribute("maxlength", "1");
-            square.setAttribute("readonly", true);
-            square.addEventListener("keydown", handleSquareInput);
+            square.type = "text"; 
+            square.maxLength = 1;
+            square.addEventListener("input", handleSquareInput); 
             square.addEventListener("focus", (e) => {
                 if (i !== currentRow) {
-                    e.target.blur();
+                    e.target.blur(); 
                 }
             });
             row.appendChild(square);
         }
         grid.appendChild(row);
     }
-    
+
     const firstSquare = document.querySelector(".row .square");
     if (firstSquare) {
-        firstSquare.focus();
+        firstSquare.focus(); 
     }
 }
 
 function handleSquareInput(e) {
     const square = e.target;
+    square.value = square.value.toUpperCase(); 
 
-    if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
-        square.value = e.key.toUpperCase();
-        moveFocus(e);
-    } else if (e.key === "Backspace") {
-        if (square.value === "") {
-            const prevSquare = square.previousElementSibling;
-            if (prevSquare) {
-                prevSquare.value = "";
-                prevSquare.focus();
-            }
-        } else {
-            square.value = "";
-        }
-    } else if (e.key === "Enter") {
-        submitGuess();
+    const nextSquare = square.nextElementSibling;
+    if (nextSquare) {
+        nextSquare.focus();
+    } else if (square.parentElement.nextElementSibling) {
+        square.parentElement.nextElementSibling.children[0].focus();
     }
 }
 
@@ -179,6 +171,18 @@ async function restartGame() {
     currentRow = 0;
     completedRows = 0;
     displayMessage("");
+
+    // Reset notebook content and hide it
+    const notebook = document.getElementById("notebook-content");
+    if (notebook) {
+        notebook.value = ""; // Clear the notebook content
+    }
+
+    const notebookPopup = document.getElementById("notebook-popup");
+    if (notebookPopup && notebookPopup.classList.contains("show")) {
+        notebookPopup.classList.remove("show");
+        notebookPopup.classList.add("hidden");
+    }
 
     const firstSquare = document.querySelector(".row .square");
     if (firstSquare) {
