@@ -54,6 +54,7 @@ body {
     text-transform: uppercase;
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
     outline: none;
+    caret-color: transparent;
 }
 
 .square:focus {
@@ -453,60 +454,40 @@ body.dark-mode button {
     backdrop-filter: blur(10px);
 }
 
-
 @media (max-width: 600px) {
-    /* Center the navigation at the top */
+    /* Make navigation horizontal and position it at the top */
     .vertical-nav {
-        position: relative;
-        top: 0;
-        left: 0;
+        position: static; /* Position it at the top */
         width: 100%;
         display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 10px;
+        justify-content: space-around;
+        margin-bottom: 20px; /* Spacing below nav */
+        flex-direction: row; /* Horizontal layout */
     }
 
-    /* Center game content */
-    .content {
-        margin: 0 auto;
-        padding-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
+    /* Center game container below navigation */
     .game-container {
-        margin-bottom: 15px;
+        margin: auto;
+        padding-top: 20px; /* To push down from the nav */
     }
 
+    /* Adjust grid and squares for smaller screens */
     .grid {
         gap: 5px;
     }
-
     .row {
         gap: 5px;
     }
-
     .square {
         width: 40px;
         height: 40px;
         font-size: 20px;
-        line-height: 40px;
-        caret-color: transparent; /* Hides the blinking caret */
+        caret-color: transparent; /* Hides caret */
     }
 
-    .title {
-        font-size: 28px;
-    }
-
-    button {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-
+    /* Hide notebook features */
     #open-notebook,
     #notebook-popup {
-        display: none; /* Hide notebook toggle and popup */
+        display: none;
     }
 }
