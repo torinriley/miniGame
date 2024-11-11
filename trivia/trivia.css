@@ -158,6 +158,51 @@ button:disabled {
     background-color: #666;
 }
 
+.speed-category-button {
+    position: relative;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.speed-category-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0.9;
+    box-sizing: border-box;
+}
+
+.speed-category-button .icon {
+    position: absolute;
+    right: -50px;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.speed-category-button:hover .icon {
+    right: 10px;
+    opacity: 1; 
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+}
+
+
 .icon {
     position: absolute;
     right: -50px;
@@ -165,10 +210,19 @@ button:disabled {
     transition: right 0.3s ease, opacity 0.3s ease;
 }
 
-.icon img {
+.speed-icon {
+    position: absolute;
+    right: -50px;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.speed-icon img {
     width: 40px;
     height: 40px;
 }
+
+
 
 .category-button:hover .icon {
     right: 10px;
@@ -274,4 +328,17 @@ button:disabled {
 
 #github-issue-link:hover {
     opacity: 1;
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5555;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
 }

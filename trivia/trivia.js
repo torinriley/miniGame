@@ -187,7 +187,6 @@ let selectedCategory = null;
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedQuestions = [];
-
 function selectCategory(category) {
     selectedCategory = category;
     currentQuestionIndex = 0;
