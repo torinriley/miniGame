@@ -1,6 +1,6 @@
 body {
     display: flex;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', sans-serif;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
