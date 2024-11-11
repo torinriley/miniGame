@@ -455,23 +455,20 @@ body.dark-mode button {
 }
 
 @media (max-width: 600px) {
-    /* Make navigation horizontal and position it at the top */
     .vertical-nav {
-        position: static; /* Position it at the top */
+        position: static; 
         width: 100%;
         display: flex;
         justify-content: space-around;
-        margin-bottom: 20px; /* Spacing below nav */
-        flex-direction: row; /* Horizontal layout */
+        margin-bottom: 20px; 
+        flex-direction: row; 
     }
 
-    /* Center game container below navigation */
     .game-container {
         margin: auto;
-        padding-top: 20px; /* To push down from the nav */
+        padding-top: 20px; 
     }
 
-    /* Adjust grid and squares for smaller screens */
     .grid {
         gap: 5px;
     }
@@ -482,12 +479,70 @@ body.dark-mode button {
         width: 40px;
         height: 40px;
         font-size: 20px;
-        caret-color: transparent; /* Hides caret */
+        caret-color: transparent; 
     }
 
-    /* Hide notebook features */
+    
     #open-notebook,
     #notebook-popup {
         display: none;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+#update-popup {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #eaffea;
+    background: rgba(34, 139, 34, 0.25); 
+    backdrop-filter: blur(20px) saturate(180%) contrast(1.2); 
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 0 0 15px rgba(34, 139, 34, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    outline: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    z-index: 1000;
+    animation: fadeInSlideDown 0.5s forwards, fadeOutSlideUp 0.5s 3s forwards;
+    margin-left: 30px;
+}
+
+@keyframes fadeInSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeOutSlideUp {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
     }
 }
