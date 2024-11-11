@@ -6,14 +6,15 @@ let completedRows = 0;
 window.onload = async function() {
     await loadWordList();
     createGrid();
+    updateRowFocus(currentRow); // Allow focus only on the first row initially
 };
 
+// Load words from file
 async function loadWordList() {
     try {
         const response = await fetch('word/words.txt');
         const text = await response.text();
-        wordList = text
-            .split('\n')
+        wordList = text.split('\n')
             .map(word => word.trim().toUpperCase())
             .filter(word => word.length === 5 && !word.endsWith("ED") && !word.endsWith("S"));
         
@@ -28,13 +29,7 @@ async function loadWordList() {
     }
 }
 
-function moveFocus(e) {
-    const nextSquare = e.target.nextElementSibling;
-    if (nextSquare) {
-        nextSquare.focus();
-    }
-}
-
+// Submit guess when all squares in the current row are filled
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
     const guessArray = Array.from(row.children).map(square => square.value.toUpperCase());
@@ -88,11 +83,54 @@ function submitGuess() {
         disableInputs();
     } else {
         currentRow++;
-        const nextRowFirstSquare = document.getElementsByClassName("row")[currentRow].children[0];
-        nextRowFirstSquare.focus();
+        updateRowFocus(currentRow); // Allow focus only for the next row
     }
 }
 
+// Restart the game
+function restartGame() {
+    const grid = document.getElementById("grid");
+    const squares = grid.querySelectorAll(".square");
+
+    // Clear the content of each square
+    squares.forEach(square => {
+        square.value = "";
+        square.classList.remove("correct", "present", "absent", "give-up");
+        square.removeAttribute("disabled");
+    });
+
+    // Reset game state
+    targetWord = "";
+    wordList = [];
+    currentRow = 0;
+    completedRows = 0;
+
+    // Reload word list and reset the grid
+    loadWordList().then(() => {
+        updateRowFocus(currentRow);
+    });
+}
+
+
+function giveUp() {
+    const row = document.getElementsByClassName("row")[currentRow];
+    for (let i = 0; i < 5; i++) {
+        const square = row.children[i];
+        square.value = targetWord[i];
+        square.classList.add("give-up");
+        square.disabled = true;
+    }
+    displayMessage("You gave up! Better luck next time.");
+    disableInputs();
+
+    // Clear the content inside the text area of the notebook
+    const notebookTextArea = document.getElementById("notebook-textarea");
+    if (notebookTextArea) {
+        notebookTextArea.value = "";
+    }
+}
+
+// Display message function
 function displayMessage(message) {
     const messageDiv = document.getElementById("message");
     if (!messageDiv) {
@@ -107,66 +145,130 @@ function displayMessage(message) {
     }, 2000);
 }
 
-document.getElementById("submit-button").addEventListener("click", submitGuess);
-
+// Update the square's styling based on correctness
 function updateSquare(square, resultClass) {
     square.classList.add(resultClass);
 }
 
+// Disable all squares (end of game)
 function disableInputs() {
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => square.disabled = true);
 }
 
-function clearBoard() {
+// Update which row's squares are enabled for input
+function updateRowFocus(rowIndex) {
     const rows = document.getElementsByClassName("row");
-    for (let row of rows) {
-        for (let square of row.children) {
-            square.value = "";
-            square.className = "square";
-            square.disabled = false;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const squares = row.children;
+        for (let square of squares) {
+            if (i === rowIndex) {
+                square.removeAttribute("readonly");
+                square.classList.remove("disabled");
+            } else {
+                square.setAttribute("readonly", true);
+                square.classList.add("disabled"); // Style as disabled to show visual difference
+                square.addEventListener("focus", preventFocus);
+            }
+        }
+    }
+    rows[rowIndex].children[0].focus();
+}
+
+// Prevent focus on squares outside the current row
+function preventFocus(e) {
+    const square = e.target;
+    const row = square.parentElement;
+    const rowIndex = Array.from(row.parentElement.children).indexOf(row);
+
+    if (rowIndex !== currentRow) {
+        square.blur();
+    }
+}
+
+// Handle square input and move to the next square automatically
+function handleSquareInput(e) {
+    const square = e.target;
+    const row = square.parentElement;
+    const rowIndex = Array.from(row.parentElement.children).indexOf(row);
+
+    if (rowIndex !== currentRow) {
+        square.blur();
+        return;
+    }
+
+    square.setAttribute("readonly", true);
+    
+    if (square.value.length === 1) {
+        const nextSquare = square.nextElementSibling;
+        if (nextSquare) {
+            nextSquare.focus();
+            nextSquare.removeAttribute("readonly");
         }
     }
 }
 
-async function restartGame() {
-    clearBoard();
-    await loadWordList();
-    currentRow = 0;
-    completedRows = 0;
-    displayMessage("");
+// Handle backspace behavior to move back to the previous square
+function handleBackspace(e) {
+    const square = e.target;
+    const row = square.parentElement;
+    const rowIndex = Array.from(row.parentElement.children).indexOf(row);
 
-    const notebook = document.getElementById("notebook-content");
-    if (notebook) {
-        notebook.value = "";
+    if (rowIndex !== currentRow) {
+        square.blur();
+        return;
     }
 
-    const notebookPopup = document.getElementById("notebook-popup");
-    if (notebookPopup && notebookPopup.classList.contains("show")) {
-        notebookPopup.classList.remove("show");
-        notebookPopup.classList.add("hidden");
-    }
-
-    const firstSquare = document.querySelector(".row .square");
-    if (firstSquare) {
-        firstSquare.focus();
+    if (e.key === "Backspace") {
+        if (square.value === "") {
+            const prevSquare = square.previousElementSibling;
+            if (prevSquare) {
+                prevSquare.value = "";
+                prevSquare.focus();
+                prevSquare.removeAttribute("readonly");
+            }
+        } else {
+            square.value = "";
+        }
+        e.preventDefault(); // Prevent default backspace behavior
     }
 }
 
-function giveUp() {
-    const row = document.getElementsByClassName("row")[currentRow];
-    for (let i = 0; i < 5; i++) {
-        const square = row.children[i];
-        square.value = targetWord[i];
-        square.classList.add("give-up");
-        square.disabled = true;
-    }
-    displayMessage("You gave up! Better luck next time.");
-    disableInputs();
-}
+// Enable submitting with "Enter" if the current row is filled
+document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        const row = document.getElementsByClassName("row")[currentRow];
+        const isRowFilled = Array.from(row.children).every(square => square.value !== "");
 
-function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
+        if (isRowFilled) {
+            submitGuess();
+        } else {
+            displayMessage("Please fill in all squares before submitting.");
+        }
+    }
+});
+
+// Create the grid and set up initial row focus
+function createGrid() {
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+    for (let i = 0; i < 6; i++) {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        for (let j = 0; j < 5; j++) {
+            const square = document.createElement("input");
+            square.classList.add("square");
+            square.setAttribute("maxlength", "1");
+            square.setAttribute("readonly", true); // Make all squares readonly initially
+            square.addEventListener("input", handleSquareInput);
+            square.addEventListener("keydown", handleBackspace);
+            square.addEventListener("focus", preventFocus);
+            row.appendChild(square);
+        }
+        grid.appendChild(row);
+    }
+    updateRowFocus(currentRow); // Only allow focus for the first row initially
 }
 
 function toggleNotebook() {
@@ -197,64 +299,11 @@ function closeNotebookOnClickOutside(event) {
     }
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-        submitGuess();
-    }
-});
 
-function handleSquareInput(e) {
-    const square = e.target;
-    square.setAttribute("readonly", true);
-    
-    if (square.value.length === 1) {
-        const nextSquare = square.nextElementSibling;
-        if (nextSquare) {
-            nextSquare.focus();
-            nextSquare.removeAttribute("readonly");
-        }
-    }
+function showUpdatePopup() {
+    const popup = document.getElementById("update-popup");
+    popup.style.display = "block"; // Show the popup
 }
 
-function handleBackspace(e) {
-    const square = e.target;
-    square.removeAttribute("readonly"); 
-
-    if (e.key === "Backspace") {
-        if (square.value === "") {
-            const prevSquare = square.previousElementSibling;
-            if (prevSquare) {
-                prevSquare.value = "";
-                prevSquare.focus();
-                prevSquare.removeAttribute("readonly");
-            }
-        } else {
-            square.value = "";
-        }
-    }
-}
-
-function createGrid() {
-    const grid = document.getElementById("grid");
-    grid.innerHTML = "";
-    for (let i = 0; i < 6; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        for (let j = 0; j < 5; j++) {
-            const square = document.createElement("input");
-            square.classList.add("square");
-            square.setAttribute("maxlength", "1");
-
-            square.addEventListener("input", handleSquareInput);
-            square.addEventListener("keydown", handleBackspace);
-
-            row.appendChild(square);
-        }
-        grid.appendChild(row);
-    }
-
-    const firstSquare = document.querySelector(".row .square");
-    if (firstSquare) {
-        firstSquare.focus();
-    }
-}
+// Call this function when the game is updated
+showUpdatePopup();
