@@ -300,10 +300,3 @@ function closeNotebookOnClickOutside(event) {
 }
 
 
-function showUpdatePopup() {
-    const popup = document.getElementById("update-popup");
-    popup.style.display = "block"; // Show the popup
-}
-
-// Call this function when the game is updated
-showUpdatePopup();

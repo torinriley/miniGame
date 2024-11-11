@@ -91,3 +91,29 @@ p {
 .light-mode .word-icon-dark {
     display: none;
 }
+
+
+
+
+#github-issue-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #727272;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+}
+
+#github-issue-link a {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#github-issue-link:hover {
+    opacity: 1;
+}

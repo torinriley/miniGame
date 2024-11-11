@@ -513,10 +513,10 @@ body.dark-mode button {
     text-align: center;
     font-size: 16px;
     color: #eaffea;
-    background: rgba(34, 139, 34, 0.25); 
+    background: rgba(102, 104, 102, 0.25); 
     backdrop-filter: blur(20px) saturate(180%) contrast(1.2); 
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 0 0 15px rgba(34, 139, 34, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 0 0 15px rgba(223, 224, 223, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.4); 
     outline: 1px solid rgba(255, 255, 255, 0.2);
     opacity: 0;
@@ -545,4 +545,28 @@ body.dark-mode button {
         opacity: 0;
         transform: translateX(-50%) translateY(-20px);
     }
+}
+
+
+#github-issue-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #727272;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+}
+
+#github-issue-link a {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#github-issue-link:hover {
+    opacity: 1;
 }
