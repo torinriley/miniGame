@@ -1,4 +1,5 @@
 # Mini Games
+[![Deploy static content to Pages](https://github.com/torinriley/miniGame/actions/workflows/static.yml/badge.svg)](https://github.com/torinriley/miniGame/actions/workflows/static.yml)
 
 
 Welcome to the Mini Games Collection! This project offers a series of interactive games designed to challenge your knowledge in general trivia and word skills. Each game provides a unique experience to test and improve your skills.
