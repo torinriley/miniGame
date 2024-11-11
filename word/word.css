@@ -54,6 +54,7 @@ body {
     text-transform: uppercase;
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
     outline: none;
+    caret-color: transparent;
 }
 
 .square:focus {
@@ -453,11 +454,24 @@ body.dark-mode button {
     backdrop-filter: blur(10px);
 }
 
-
 @media (max-width: 600px) {
-    .game-container {
-        margin-bottom: 15px;
+    /* Make navigation horizontal and position it at the top */
+    .vertical-nav {
+        position: static; /* Position it at the top */
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px; /* Spacing below nav */
+        flex-direction: row; /* Horizontal layout */
     }
+
+    /* Center game container below navigation */
+    .game-container {
+        margin: auto;
+        padding-top: 20px; /* To push down from the nav */
+    }
+
+    /* Adjust grid and squares for smaller screens */
     .grid {
         gap: 5px;
     }
@@ -467,31 +481,13 @@ body.dark-mode button {
     .square {
         width: 40px;
         height: 40px;
-        font-size: 18px;
-        line-height: 40px;
-        width: 40px;  /* Adjusted width for mobile */
-        height: 40px; /* Adjusted height for mobile */
-        font-size: 20px; 
+        font-size: 20px;
+        caret-color: transparent; /* Hides caret */
     }
-    .title {
-        font-size: 28px;
-    }
-    button {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-    #open-notebook {
-        bottom: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-    }
-    #open-notebook, /* Hides the notebook toggle button */
-    #notebook-popup /* Hides the notebook popup */ {
+
+    /* Hide notebook features */
+    #open-notebook,
+    #notebook-popup {
         display: none;
     }
-}
-
-.square {
-    caret-color: transparent; /* Hides the blinking caret */
 }
