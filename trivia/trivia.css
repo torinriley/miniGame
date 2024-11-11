@@ -1,6 +1,6 @@
 body {
     display: flex;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', sans-serif;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -158,6 +158,51 @@ button:disabled {
     background-color: #666;
 }
 
+.speed-category-button {
+    position: relative;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.speed-category-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0.9;
+    box-sizing: border-box;
+}
+
+.speed-category-button .icon {
+    position: absolute;
+    right: -50px;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.speed-category-button:hover .icon {
+    right: 10px;
+    opacity: 1; 
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+}
+
+
 .icon {
     position: absolute;
     right: -50px;
@@ -165,10 +210,19 @@ button:disabled {
     transition: right 0.3s ease, opacity 0.3s ease;
 }
 
-.icon img {
+.speed-icon {
+    position: absolute;
+    right: -50px;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.speed-icon img {
     width: 40px;
     height: 40px;
 }
+
+
 
 .category-button:hover .icon {
     right: 10px;
@@ -225,8 +279,7 @@ button:disabled {
     font-size: 1rem;
     font-weight: bold;
     color: #f8f8f8;
-    background: linear-gradient(145deg, rgba(255, 77, 77, 0.6), rgba(255, 100, 100, 0.3));
-    border: none;
+    border: 2px solid #ff4d4d;
     border-radius: 15px;
     cursor: pointer;
     width: 50%;
@@ -235,19 +288,57 @@ button:disabled {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Glassmorphic Effects */
-    backdrop-filter: blur(15px) saturate(180%);
-    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .end-round-button:hover {
-    background: linear-gradient(145deg, rgba(230, 57, 70, 0.7), rgba(240, 90, 100, 0.4));
+    background-color: rgba(255, 77, 77, 0.2);
+    color: #ffffff;
+    border-color: rgba(255, 77, 77, 0.5);
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
+    opacity: 0.9;
 }
 
 .end-round-button:active {
     transform: scale(0.97);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(255, 255, 255, 0.15) inset;
+}
+
+#github-issue-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #727272;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+}
+
+#github-issue-link a {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#github-issue-link:hover {
+    opacity: 1;
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5555;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
 }

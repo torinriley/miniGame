@@ -1,4 +1,3 @@
-/* Basic styles */
 :root {
     --bg-color: #333;
     --text-color: #f8f8f8;
@@ -8,7 +7,6 @@
     --button-hover-color: #666;
 }
 
-/* Light mode overrides */
 .light-mode {
     --bg-color: #f8f8f8;
     --text-color: #333;
@@ -18,7 +16,6 @@
     --button-hover-color: #ccc;
 }
 
-/* Theme colors */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -31,7 +28,6 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Header and navigation */
 header {
     width: 100%;
     display: flex;
@@ -90,4 +86,30 @@ p {
 }
 .light-mode .word-icon-dark {
     display: none;
+}
+
+
+
+
+#github-issue-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #727272;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+}
+
+#github-issue-link a {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#github-issue-link:hover {
+    opacity: 1;
 }
