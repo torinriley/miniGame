@@ -138,6 +138,106 @@ const questions = {
             question: "What does the CAP theorem state in distributed systems?", 
             choices: ["Consistency, Availability, and Partition Tolerance cannot be achieved simultaneously", "There is a trade-off between speed and security", "Databases can always be both consistent and available", "Every system must have a master node"], 
             correctAnswer: 0 
+        },
+        {
+            question: "In JavaScript, what is the purpose of the 'Symbol.iterator' property?",
+            choices: [
+                "To allow an object to be iterable",
+                "To enable dynamic typing of object properties",
+                "To enforce immutability in objects",
+                "To create private object properties"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Which sorting algorithm has the best average-case performance when sorting data with a high degree of locality (i.e., nearly sorted)?",
+            choices: [
+                "Quick Sort",
+                "Merge Sort",
+                "Heap Sort",
+                "Insertion Sort"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "In distributed computing, what is the main purpose of the Paxos algorithm?",
+            choices: [
+                "To minimize data retrieval time",
+                "To achieve consensus across unreliable nodes",
+                "To compress data efficiently",
+                "To synchronize clocks in distributed systems"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which of the following Big-O notations describes the complexity of Dijkstra's algorithm for finding the shortest path using a min-priority queue with an adjacency list?",
+            choices: [
+                "O(V^2)",
+                "O(E + V log V)",
+                "O(E log V)",
+                "O(V log V)"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "What is a primary purpose of using 'memoization' in dynamic programming?",
+            choices: [
+                "To reduce memory usage",
+                "To avoid redundant calculations",
+                "To increase the recursive depth",
+                "To optimize code readability"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which of the following describes the purpose of the 'SOLID' principles in object-oriented programming?",
+            choices: [
+                "To ensure immutability of objects",
+                "To improve code readability and maintainability",
+                "To enforce parallel processing capabilities",
+                "To guarantee memory efficiency in classes"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "What is the purpose of a bloom filter in data structures?",
+            choices: [
+                "To provide fast access to hash table values",
+                "To approximate membership with probabilistic data structures",
+                "To compress data using bitwise operations",
+                "To dynamically resize arrays"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "In computer science, what does the CAP theorem state about distributed systems?",
+            choices: [
+                "Consistency, Availability, and Partition Tolerance cannot all be achieved simultaneously",
+                "There is a trade-off between speed and security",
+                "Databases can always be consistent and available",
+                "Every system must have a master node"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "In event-driven programming, what is the purpose of the 'event loop'?",
+            choices: [
+                "To handle multiple threads simultaneously",
+                "To manage non-blocking I/O operations",
+                "To queue and handle events asynchronously",
+                "To allocate memory for recursive functions"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "In computer networks, what is 'TCP slow start' designed to accomplish?",
+            choices: [
+                "To manage packet loss in high-latency networks",
+                "To gradually increase the congestion window to avoid network congestion",
+                "To maintain a consistent data transfer rate",
+                "To optimize routing tables in dynamic networks"
+            ],
+            correctAnswer: 1
         }
     ],
     funny: [
@@ -177,7 +277,107 @@ const questions = {
         { question: "About how many words is a dog able to learn?", choices: ["165", "300", "50", "500"], correctAnswer: 0 },
         { question: "Where is the largest desert on earth?", choices: ["Antarctica", "Sahara", "Gobi", "Kalahari"], correctAnswer: 0 },
         { question: "Budimir Šobat broke a world record in 2021 for holding his breath. How long did he hold it?", choices: ["24 minutes 37 seconds", "18 minutes", "20 minutes", "16 minutes"], correctAnswer: 0 },
-        { question: "Which two U.S. states make it illegal to get married on a dare?", choices: ["Colorado and Delaware", "Texas and California", "New York and Florida", "Nevada and Arizona"], correctAnswer: 0 }
+        { question: "Which two U.S. states make it illegal to get married on a dare?", choices: ["Colorado and Delaware", "Texas and California", "New York and Florida", "Nevada and Arizona"], correctAnswer: 0 },
+        {
+            question: "What do you call a group of flamingos?",
+            choices: ["A flock", "A flamboyance", "A sparkle", "A cluster"],
+            correctAnswer: 1
+        },
+        {
+            question: "In which state is it illegal to eat fried chicken with a fork?",
+            choices: ["Texas", "Kentucky", "Georgia", "Alabama"],
+            correctAnswer: 2
+        },
+        {
+            question: "What is the national animal of Scotland?",
+            choices: ["Lion", "Unicorn", "Eagle", "Sheep"],
+            correctAnswer: 1
+        },
+        {
+            question: "Which mammal has the most powerful bite?",
+            choices: ["Lion", "Hippo", "Crocodile", "Human (on Mondays)"],
+            correctAnswer: 1
+        },
+        {
+            question: "Which planet is known for having a 'Great Red Spot' that’s actually a massive storm?",
+            choices: ["Mars", "Jupiter", "Saturn", "Uranus"],
+            correctAnswer: 1
+        },
+        {
+            question: "What animal's fingerprints are so similar to humans that they can actually taint crime scenes?",
+            choices: ["Raccoon", "Koala", "Chimpanzee", "Dolphin"],
+            correctAnswer: 1
+        },
+        {
+            question: "Which fruit is known to explode when microwaved?",
+            choices: ["Banana", "Grapes", "Watermelon", "Apple"],
+            correctAnswer: 1
+        },
+        {
+            question: "Who was known for saying, 'I have not failed. I've just found 10,000 ways that won't work'?",
+            choices: ["Albert Einstein", "Nikola Tesla", "Thomas Edison", "Elon Musk"],
+            correctAnswer: 2
+        },
+        {
+            question: "What is the collective term for a group of pandas?",
+            choices: ["Embarrassment", "Pride", "Pack", "Parade"],
+            correctAnswer: 0
+        },
+        {
+            question: "What is the main ingredient in 'Blood Pudding'?",
+            choices: ["Strawberries", "Ketchup", "Blood", "Beet Juice"],
+            correctAnswer: 2
+        },
+        {
+            question: "According to a myth, what color can bulls actually not see?",
+            choices: ["Red", "Green", "Blue", "All colors (they’re colorblind)"],
+            correctAnswer: 0
+        },
+        {
+            question: "How long did the world’s longest hiccup fit last?",
+            choices: ["1 week", "1 month", "5 years", "68 years"],
+            correctAnswer: 3
+        },
+        {
+            question: "If you lift a kangaroo's tail off the ground, what is it unable to do?",
+            choices: ["Jump", "Hop", "Eat", "Blink"],
+            correctAnswer: 0
+        },
+        {
+            question: "How many noses does a slug have?",
+            choices: ["One", "Four", "None", "Two"],
+            correctAnswer: 1
+        },
+        {
+            question: "What is a group of porcupines called?",
+            choices: ["Quill", "Prickle", "Hedge", "Puff"],
+            correctAnswer: 1
+        },
+        {
+            question: "What is the fear of long words called?",
+            choices: ["Linguaphobia", "Verbophobia", "Hippopotomonstrosesquipedaliophobia", "Logophobia"],
+            correctAnswer: 2
+        },
+        {
+            question: "What is the term for a group of hippos?",
+            choices: ["Bloat", "Plump", "Crash", "Pod"],
+            correctAnswer: 0
+        },
+        {
+            question: "What common food item will sink in water but float in soda?",
+            choices: ["Apple", "Peanut", "Lemon", "Egg"],
+            correctAnswer: 3
+        },
+        {
+            question: "What part of the body never stops growing?",
+            choices: ["Nose", "Eyes", "Tongue", "Hands"],
+            correctAnswer: 0
+        },
+        {
+            question: "Which country is home to the most tornadoes per year?",
+            choices: ["USA", "China", "Russia", "Australia"],
+            correctAnswer: 0
+        }
     ]
 };
 
