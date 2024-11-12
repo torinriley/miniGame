@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Missing Word</title>
+    <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+    <nav class="vertical-nav">
+        <a href="word.html" class="nav-link">
+            <img src="icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon">
+            <span>Word</span>
+        </a>
+        <a href="trivia.html" class="nav-link">
+            <img src="icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon">
+            <span>Trivia</span>
+        </a>
+    </nav>
+    <div class="form-container">
+        <h2>Report Missing or Incorrect Word</h2>
+        <p>If you found a word missing or incorrect, please let us know!</p>
+
+        <form id="reportForm">
+            <label for="word">Word:</label>
+            <input type="text" id="word" name="word" required>
+
+            <label for="details">Details (Optional):</label>
+            <textarea id="details" name="details" rows="4"></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+
+        <div id="formMessage" class="hidden">Thank you! Your report has been submitted.</div>
+    </div>
+    <div id="github-issue-link">
+        <span>See an issue with this page? </span><a href="https://github.com/torinriley/miniGame.git" target="_blank">Fix it on GitHub</a>
+    </div>
+
+
+    <script src="script/script.js"></script>
+</body>
+</html>

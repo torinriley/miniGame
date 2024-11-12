@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333;
+    color: #f8f8f8;
+    margin: 0;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    color: #f8f8f8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #f8f8f8;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #f8f8f8;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 1em;
+    color: #f8f8f8;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #bbb;
+}
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    color: #f8f8f8;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.3); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); 
+    transform: scale(1.02);
+}
+
+button[type="submit"]:active {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#formMessage {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #f8f8f8;
+    display: none;
+}
+
+#formMessage.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.vertical-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover .nav-icon {
+    transform: scale(1.2);
+}
+
+
+#github-issue-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: #727272;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+}
+
+#github-issue-link a {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#github-issue-link:hover {
+    opacity: 1;
+}
