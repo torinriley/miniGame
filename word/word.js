@@ -15,7 +15,7 @@ async function loadWordList() {
         const text = await response.text();
         wordList = text.split('\n')
             .map(word => word.trim().toUpperCase())
-            .filter(word => word.length === 5 && !word.endsWith("ED") && !word.endsWith("S"));
+            .filter(word => word.length === 5 && !word.endsWith("ED"));
         
         if (wordList.length === 0) {
             console.error("No valid words available.");
@@ -288,3 +288,7 @@ function updateRowFocus(rowIndex) {
     rows[rowIndex].children[0].removeAttribute("readonly");
     rows[rowIndex].children[0].focus();
 }
+
+
+
+
