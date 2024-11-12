@@ -5989,9 +5989,6 @@ japer
 japes
 jarks
 jarls
-jarps
-jarta
-jarul
 jasey
 jaspe
 jasps
@@ -9131,7 +9128,7 @@ parid
 paris
 parka
 parki
-parks
+parks 
 parky
 parle
 parly
