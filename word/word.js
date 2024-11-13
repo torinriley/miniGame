@@ -363,8 +363,7 @@ window.onload = async function() {
 
 
 function updateKeyboard(letter, status) {
-    // Priority: "revealed" > "correct" > "present" > "absent"
-    const currentStatus = guessedLetters[letter];
+        const currentStatus = guessedLetters[letter];
 
     if (
         status === "revealed" || 
@@ -372,10 +371,8 @@ function updateKeyboard(letter, status) {
         (status === "present" && currentStatus !== "revealed" && currentStatus !== "correct") ||
         (!currentStatus || currentStatus === "absent")
     ) {
-        // Update guessedLetters with the new status
         guessedLetters[letter] = status;
         
-        // Get the key element and apply the status
         const keyElement = document.getElementById(`key-${letter}`);
         if (keyElement) {
             keyElement.classList.remove("correct", "present", "absent", "revealed");
