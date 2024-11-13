@@ -26,6 +26,7 @@ body {
 .game-container {
     text-align: center;
     margin-bottom: 20px;
+    margin-right: 50px;
 }
 
 .grid {
@@ -187,6 +188,7 @@ button:hover {
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: color 0.5s ease;
+    margin-right: 40px;
 }
 
 
@@ -612,7 +614,7 @@ body.dark-mode button {
     gap: 5px;
     max-width: 500px;
     justify-content: center;
-    margin-left: 60px;
+    margin-left: 20px;
     margin-top: 30px;
 }
 
@@ -660,7 +662,7 @@ body.dark-mode button {
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
-    margin-left: 70px;
+    margin-left: 30px;
 }
 
 
@@ -689,12 +691,46 @@ body.dark-mode button {
 
 
 .key.revealed {
-    color: #ff4d4d; /* Red text color */
+    color: #ff4d4d; 
     font-weight: bold;
-    background-color: rgba(255, 77, 77, 0.1); /* Transparent red background */
-    border: 2px solid rgba(255, 77, 77, 0.4); /* Red border */
-    backdrop-filter: blur(8px); /* Glassmorphic effect */
+    background-color: rgba(255, 77, 77, 0.1); 
+    border: 2px solid rgba(255, 77, 77, 0.4); 
+    backdrop-filter: blur(8px);
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    width: 40px; /* Ensure size remains the same */
-    height: 40px; /* Ensure size remains the same */
+    width: 40px;
+    height: 40px;
+}
+
+
+#restart {
+    color: #777; 
+    font-weight: bold;
+    border: 2px solid #777; 
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    backdrop-filter: blur(10px) saturate(180%);
+}
+
+#restart:hover {
+    background-color: #777; 
+    color: #ffffff;
+    border-color: #777;
+    opacity: 0.9;
+}
+
+
+
+.modal-content a {
+    color: rgba(0, 122, 255, 0.7); 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content a:hover {
+    color: rgba(0, 122, 255, 1); 
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }

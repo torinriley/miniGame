@@ -1,5 +1,7 @@
 document.getElementById('reportForm').addEventListener('submit', async function(event) {
     event.preventDefault(); 
+
+    const reportType = document.getElementById('reportType').value;
     const word = document.getElementById('word').value;
     const details = document.getElementById('details').value;
 
@@ -9,12 +11,12 @@ document.getElementById('reportForm').addEventListener('submit', async function(
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ word, details })
+            body: JSON.stringify({ reportType, word, details })
         });
 
         if (response.ok) {
             showPopupMessage("Thank you! Your report has been submitted.");
-            document.getElementById('reportForm').reset();
+            document.getElementById('reportForm').reset(); 
         } else {
             showPopupMessage("Something went wrong. Please try again.");
         }
@@ -27,8 +29,7 @@ document.getElementById('reportForm').addEventListener('submit', async function(
 function showPopupMessage(message) {
     const formMessage = document.getElementById('formMessage');
     formMessage.textContent = message;
-    formMessage.classList.add('show');
-
+    formMessage.classList.add('show'); 
     setTimeout(() => {
         formMessage.classList.remove('show');
     }, 3000); 

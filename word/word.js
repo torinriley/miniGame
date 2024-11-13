@@ -38,7 +38,6 @@ async function loadWordList() {
 }
 
 
-
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
     const guessArray = Array.from(row.children).map(square => square.value.toUpperCase());
@@ -102,8 +101,6 @@ function submitGuess() {
 
 
 
-
-// Reset the keyboard when restarting the game
 function restartGame() {
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
@@ -121,29 +118,30 @@ function restartGame() {
         updateRowFocus(currentRow);
     });
 
-    // Reset keyboard colors and remove 'revealed' class
+    
     document.querySelectorAll(".key").forEach(key => {
-        key.classList.remove("correct", "present", "absent", "revealed"); // Clear all classes
+        key.classList.remove("correct", "present", "absent", "revealed");
     });
 }
 
+
+
 function giveUp() {
     const row = document.getElementsByClassName("row")[currentRow];
-    
-    // Reveal the target word on the grid
+
+
     for (let i = 0; i < targetWord.length; i++) {
         const square = row.children[i];
         square.value = targetWord[i];
         square.classList.add("give-up");
         square.disabled = true;
     }
+    
     displayMessage("You gave up! Better luck next time.");
     disableInputs();
 
-    // Update the keyboard to show the revealed word in red
-    for (let i = 0; i < targetWord.length; i++) {
-        const letter = targetWord[i];
-        updateKeyboard(letter, "revealed"); // Apply 'revealed' styling to each letter
+    for (let letter of targetWord) {
+        updateKeyboard(letter, "revealed");
     }
 }
 
@@ -164,7 +162,6 @@ function displayMessage(message) {
 function updateSquare(square, resultClass) {
     square.classList.add(resultClass);
 }
-
 
 function disableInputs() {
     const squares = document.querySelectorAll(".square");
@@ -361,10 +358,16 @@ window.onload = async function() {
     updateRowFocus(currentRow);
 };
 
+
 function updateKeyboard(letter, status) {
     const keyElement = document.getElementById(`key-${letter}`);
     if (keyElement) {
-        keyElement.classList.remove("correct", "present", "absent", "revealed"); // Clear existing status
-        keyElement.classList.add(status); // Apply new status (e.g., "revealed")
+        keyElement.classList.remove("correct", "present", "absent", "revealed");
+        keyElement.classList.add(status);
     }
+}
+
+function toggleModal() {
+    const modal = document.getElementById("infoModal");
+    modal.classList.toggle("show");
 }

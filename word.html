@@ -5,9 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word</title>
     <link rel="stylesheet" href="word/word.css">
+    <link rel="stylesheet" href="word/info.css">
     <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
 </head>
 <body class="dark-mode">
+    <div class="tooltip-icon-container">
+        <img src="icons/tooltip.svg" alt="Tooltip Icon" class="tooltip-icon" onclick="toggleModal()" />
+    </div>
+    
+   <!-- Modal for Word Game Information -->
+<div id="infoModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" onclick="toggleModal()">&times;</span>
+        <h2>About the Word Game</h2>
+        <p>Welcome to the Word Game! Your goal is to guess a hidden five-letter word within six tries. After each guess, the game provides feedback through color-coded clues:</p>
+        <ul>
+            <li><b>Green</b> - Correct letter in the correct position.</li>
+            <li><b>Yellow</b> - Correct letter in the wrong position.</li>
+            <li><b>Gray</b> - Incorrect letter.</li>
+        </ul>
+        <p>The on-screen keyboard reflects these feedback colors, helping you refine your guesses. Use the <b>Reveal</b> button to forfeit the current game and view the hidden word, or the <b>Restart</b> button to start a new game with a fresh word. If you notice any missing or incorrect words, please <a href="submitword.html">submit a report</a> to let us know. Good luck, and enjoy the challenge!</p>
+    </div>
+</div>
     <!-- Vertical Navigation Bar -->
     <nav class="vertical-nav">
         <a href="word.html" class="nav-link">
@@ -65,7 +84,7 @@
 
 
     <div id="button-container">
-        <button id="restart" onclick="restartGame()">Restart</button>
+        <button id="restart" class="restart-button" onclick="restartGame()">Restart</button>
         <button id="reveal" onclick="giveUp()">Reveal</button>
     </div>
 
