@@ -18,11 +18,23 @@
             <span>Trivia</span>
         </a>
     </nav>
+
     <div class="form-container">
+        <div class="back-button">
+            <a href="word.html">
+                <img src="icons/back-icon.svg" alt="Back" class="back-icon">
+            </a>
+        </div>
         <h2>Report Missing or Incorrect Word</h2>
         <p>If you found a word missing or incorrect, please let us know!</p>
 
         <form id="reportForm">
+            <label for="reportType">Report Type:</label>
+            <select id="reportType" name="reportType" required>
+                <option value="missing">Missing</option>
+                <option value="incorrect">Incorrect</option>
+            </select>
+
             <label for="word">Word:</label>
             <input type="text" id="word" name="word" required>
 
@@ -34,10 +46,11 @@
 
         <div id="formMessage" class="hidden">Thank you! Your report has been submitted.</div>
     </div>
-    <div id="github-issue-link">
-        <span>See an issue with this page? </span><a href="https://github.com/torinriley/miniGame.git" target="_blank">Fix it on GitHub</a>
-    </div>
 
+    <div id="github-issue-link">
+        <span>See an issue with this page? </span>
+        <a href="https://github.com/torinriley/miniGame.git" target="_blank">Fix it on GitHub</a>
+    </div>
 
     <script src="script/script.js"></script>
 </body>

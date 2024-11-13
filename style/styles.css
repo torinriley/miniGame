@@ -70,6 +70,7 @@ select:focus,
 textarea:focus {
     border-color: #bbb;
 }
+
 button[type="submit"] {
     width: 100%;
     padding: 12px;
@@ -112,7 +113,6 @@ button[type="submit"]:active {
     display: none;
 }
 
-
 .vertical-nav {
     position: fixed;
     top: 20px;
@@ -143,7 +143,6 @@ button[type="submit"]:active {
     transform: scale(1.2);
 }
 
-
 #github-issue-link {
     position: fixed;
     bottom: 10px;
@@ -165,4 +164,53 @@ button[type="submit"]:active {
 
 #github-issue-link:hover {
     opacity: 1;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    width: 50px; 
+    height: 50px;
+}
+
+.back-button a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #4a90e2;  
+    font-size: 1em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.back-button a:hover {
+    color: #357ab8; 
+}
+
+.back-icon {
+    width: 50px; 
+    height: 50px;
+    margin-right: 8px;
+    transition: transform 0.3s;
+}
+
+.back-button a:hover .back-icon {
+    transform: translateX(-4px); 
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 1em;
+    color: #f8f8f8;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #4a90e2;
 }

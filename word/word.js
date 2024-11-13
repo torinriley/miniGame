@@ -2,6 +2,15 @@ let targetWord = "";
 let wordList = [];
 let currentRow = 0;
 let completedRows = 0;
+const keyStatus = {};
+const keyboardContainer = document.getElementById("keyboard");
+const keyboardLayout = [
+    "QWERTYUIOP",
+    "ASDFGHJKL",
+    "ZXCVBNM"
+];
+
+
 
 window.onload = async function() {
     await loadWordList();
@@ -28,6 +37,7 @@ async function loadWordList() {
     }
 }
 
+
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
     const guessArray = Array.from(row.children).map(square => square.value.toUpperCase());
@@ -53,6 +63,7 @@ function submitGuess() {
     for (let i = 0; i < 5; i++) {
         if (guessArray[i] === targetArray[i]) {
             updateSquare(row.children[i], "correct");
+            updateKeyboard(guessArray[i], "correct");
             matchedIndexes.add(i);
             guessCopy[i] = null;
             targetArray[i] = null;
@@ -64,12 +75,15 @@ function submitGuess() {
             const targetIndex = targetArray.indexOf(guessCopy[i]);
             if (targetIndex !== -1 && !matchedIndexes.has(targetIndex)) {
                 updateSquare(row.children[i], "present");
+                updateKeyboard(guessCopy[i], "present");
                 targetArray[targetIndex] = null;
             } else {
                 updateSquare(row.children[i], "absent");
+                updateKeyboard(guessCopy[i], "absent");
             }
         } else if (!matchedIndexes.has(i)) {
             updateSquare(row.children[i], "absent");
+            updateKeyboard(guessArray[i], "absent");
         }
     }
 
@@ -86,17 +100,15 @@ function submitGuess() {
 }
 
 
-function restartGame() {
-    const grid = document.getElementById("grid");
-    const squares = grid.querySelectorAll(".square");
 
+function restartGame() {
+    const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.value = "";
         square.classList.remove("correct", "present", "absent", "give-up");
         square.removeAttribute("disabled");
     });
 
-    
     targetWord = "";
     wordList = [];
     currentRow = 0;
@@ -105,26 +117,33 @@ function restartGame() {
     loadWordList().then(() => {
         updateRowFocus(currentRow);
     });
+
+    
+    document.querySelectorAll(".key").forEach(key => {
+        key.classList.remove("correct", "present", "absent", "revealed");
+    });
 }
+
 
 
 function giveUp() {
     const row = document.getElementsByClassName("row")[currentRow];
-    for (let i = 0; i < 5; i++) {
+
+
+    for (let i = 0; i < targetWord.length; i++) {
         const square = row.children[i];
         square.value = targetWord[i];
         square.classList.add("give-up");
         square.disabled = true;
     }
+    
     displayMessage("You gave up! Better luck next time.");
     disableInputs();
 
-    const notebookTextArea = document.getElementById("notebook-textarea");
-    if (notebookTextArea) {
-        notebookTextArea.value = "";
+    for (let letter of targetWord) {
+        updateKeyboard(letter, "revealed");
     }
 }
-
 
 function displayMessage(message) {
     const messageDiv = document.getElementById("message");
@@ -143,7 +162,6 @@ function displayMessage(message) {
 function updateSquare(square, resultClass) {
     square.classList.add(resultClass);
 }
-
 
 function disableInputs() {
     const squares = document.querySelectorAll(".square");
@@ -268,7 +286,6 @@ function handleSquareInput(e) {
     }
 }
 
-// Update which row's squares are enabled for input
 function updateRowFocus(rowIndex) {
     const rows = document.getElementsByClassName("row");
     for (let i = 0; i < rows.length; i++) {
@@ -291,4 +308,66 @@ function updateRowFocus(rowIndex) {
 
 
 
+function createKeyboard() {
+    keyboardContainer.innerHTML = "";
+    
+    keyboardLayout.forEach((row, rowIndex) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("keyboard-row");
+        if (rowIndex === 2) rowDiv.classList.add("bottom-row"); 
+        
+        for (let letter of row) {
+            const key = document.createElement("div");
+            key.classList.add("key");
+            key.textContent = letter;
+            key.id = `key-${letter}`;
+            
+            key.addEventListener("click", () => handleKeyClick(letter));
+            
+            rowDiv.appendChild(key);
+        }
+        
+        keyboardContainer.appendChild(rowDiv);
+    });
+}
 
+
+function handleKeyClick(letter) {
+    const row = document.getElementsByClassName("row")[currentRow];
+    const squares = Array.from(row.children);
+    const emptySquare = squares.find(square => square.value === "");
+
+    if (emptySquare) {
+        emptySquare.value = letter;
+        emptySquare.dispatchEvent(new Event("input")); 
+    }
+
+    const keyElement = document.getElementById(`key-${letter}`);
+    if (keyElement) {
+        keyElement.classList.add("pressed");
+        setTimeout(() => {
+            keyElement.classList.remove("pressed"); 
+        }, 100);
+    }
+}
+
+window.onload = async function() {
+    createKeyboard();
+    await loadWordList();
+    createGrid();
+    updateRowFocus(currentRow);
+};
+
+
+function updateKeyboard(letter, status) {
+    const keyElement = document.getElementById(`key-${letter}`);
+    if (keyElement) {
+        keyElement.classList.remove("correct", "present", "absent", "revealed");
+        keyElement.classList.add(status);
+    }
+}
+
+function toggleModal() {
+    const modal = document.getElementById("infoModal");
+    modal.classList.toggle("show");
+}
