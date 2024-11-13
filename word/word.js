@@ -2,6 +2,7 @@ let targetWord = "";
 let wordList = [];
 let currentRow = 0;
 let completedRows = 0;
+let guessedLetters = {};
 const keyStatus = {};
 const keyboardContainer = document.getElementById("keyboard");
 const keyboardLayout = [
@@ -36,7 +37,6 @@ async function loadWordList() {
         console.error("Error loading words:", error);
     }
 }
-
 
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
@@ -101,7 +101,10 @@ function submitGuess() {
 
 
 
+
 function restartGame() {
+    guessedLetters = {}; // Reset guessed letters tracking
+
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.value = "";
@@ -118,12 +121,11 @@ function restartGame() {
         updateRowFocus(currentRow);
     });
 
-    
+    // Reset keyboard colors and remove 'revealed' class
     document.querySelectorAll(".key").forEach(key => {
-        key.classList.remove("correct", "present", "absent", "revealed");
+        key.classList.remove("correct", "present", "absent", "revealed"); // Clear all classes
     });
 }
-
 
 
 function giveUp() {
@@ -359,13 +361,29 @@ window.onload = async function() {
 };
 
 
+
 function updateKeyboard(letter, status) {
-    const keyElement = document.getElementById(`key-${letter}`);
-    if (keyElement) {
-        keyElement.classList.remove("correct", "present", "absent", "revealed");
-        keyElement.classList.add(status);
+    // Priority: "revealed" > "correct" > "present" > "absent"
+    const currentStatus = guessedLetters[letter];
+
+    if (
+        status === "revealed" || 
+        (status === "correct" && currentStatus !== "revealed") ||
+        (status === "present" && currentStatus !== "revealed" && currentStatus !== "correct") ||
+        (!currentStatus || currentStatus === "absent")
+    ) {
+        // Update guessedLetters with the new status
+        guessedLetters[letter] = status;
+        
+        // Get the key element and apply the status
+        const keyElement = document.getElementById(`key-${letter}`);
+        if (keyElement) {
+            keyElement.classList.remove("correct", "present", "absent", "revealed");
+            keyElement.classList.add(status);
+        }
     }
 }
+
 
 function toggleModal() {
     const modal = document.getElementById("infoModal");
