@@ -714,7 +714,7 @@ body.dark-mode button {
 }
 
 #restart:hover {
-    background-color: #777; 
+    background-color: #444; 
     color: #ffffff;
     border-color: #777;
     opacity: 0.9;
