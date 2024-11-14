@@ -21,22 +21,30 @@ window.onload = async function() {
 
 async function loadWordList() {
     try {
-        const response = await fetch('word/words.txt');
-        const text = await response.text();
-        wordList = text.split('\n')
+        const response1 = await fetch('word/words.txt');
+        const text1 = await response1.text();
+        wordList = text1.split('\n')
             .map(word => word.trim().toUpperCase())
             .filter(word => word.length === 5 && !word.endsWith("ED"));
-        
-        if (wordList.length === 0) {
-            console.error("No valid words available.");
-            return;
-        }
 
-        targetWord = wordList[Math.floor(Math.random() * wordList.length)];
+        const response2 = await fetch('word/AnswerWords.txt');
+        const text2 = await response2.text();
+        const targetWordList = text2.split('\n')
+            .map(word => word.trim().toUpperCase())
+            .filter(word => word.length === 5 && !word.endsWith("ED"));
+
+        wordList = [...new Set([...wordList, ...targetWordList])];
+
+        if (targetWordList.length > 0) {
+            targetWord = targetWordList[Math.floor(Math.random() * targetWordList.length)];
+        } else {
+            console.error("No valid target words available.");
+        }
     } catch (error) {
         console.error("Error loading words:", error);
     }
 }
+
 
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
