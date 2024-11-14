@@ -27,7 +27,7 @@ async function loadWordList() {
             .map(word => word.trim().toUpperCase())
             .filter(word => word.length === 5 && !word.endsWith("ED"));
 
-        const response2 = await fetch('word/AnswerWords.txt');
+        const response2 = await fetch('word/answerWords.txt');
         const text2 = await response2.text();
         const targetWordList = text2.split('\n')
             .map(word => word.trim().toUpperCase())
