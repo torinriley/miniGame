@@ -3072,7 +3072,6 @@ toned
 pared
 scull
 vexes
-punts
 snoop
 bails
 dames
