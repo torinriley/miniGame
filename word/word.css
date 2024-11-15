@@ -638,6 +638,7 @@ body.dark-mode button {
     font-size: 1em;
     transition: background-color 0.3s, transform 0.1s ease;
     cursor: default;
+    margin: 2px;
 
 }
 
@@ -720,17 +721,34 @@ body.dark-mode button {
     opacity: 0.9;
 }
 
-
-
-.modal-content a {
-    color: rgba(0, 122, 255, 0.7); 
-    text-decoration: none;
+#message-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    color: #ffffff;
     font-weight: bold;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    margin-right: 20px;
+    margin-left: 15px;
 }
 
-.modal-content a:hover {
-    color: rgba(0, 122, 255, 1); 
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+#message-container.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }

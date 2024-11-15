@@ -3,6 +3,7 @@ let wordList = [];
 let currentRow = 0;
 let completedRows = 0;
 let guessedLetters = {};
+let revealEnabled = true;
 const keyStatus = {};
 const keyboardContainer = document.getElementById("keyboard");
 const keyboardLayout = [
@@ -46,6 +47,20 @@ async function loadWordList() {
 }
 
 
+
+document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        const row = document.getElementsByClassName("row")[currentRow];
+        const isRowFilled = Array.from(row.children).every(square => square.value !== "");
+
+        if (isRowFilled) {
+            submitGuess();
+        } else {
+            displayMessage("Please fill in all squares before submitting.");
+        }
+    }
+});
+
 function submitGuess() {
     const row = document.getElementsByClassName("row")[currentRow];
     const guessArray = Array.from(row.children).map(square => square.value.toUpperCase());
@@ -64,6 +79,9 @@ function submitGuess() {
     }
 
     completedRows++;
+    correctLetters = 0;
+    incorrectLetters = 0;
+
     const targetArray = targetWord.split("");
     const guessCopy = [...guessArray];
     const matchedIndexes = new Set();
@@ -75,6 +93,7 @@ function submitGuess() {
             matchedIndexes.add(i);
             guessCopy[i] = null;
             targetArray[i] = null;
+            correctLetters++;
         }
     }
 
@@ -92,6 +111,7 @@ function submitGuess() {
         } else if (!matchedIndexes.has(i)) {
             updateSquare(row.children[i], "absent");
             updateKeyboard(guessArray[i], "absent");
+            incorrectLetters++;
         }
     }
 
@@ -99,19 +119,38 @@ function submitGuess() {
         displayMessage("Congratulations! You've guessed the word.");
         disableInputs();
     } else if (completedRows === 6) {
-        displayMessage(`Game over! The word was ${targetWord}.`);
+        displayGameOverModal();
         disableInputs();
     } else {
         currentRow++;
-        updateRowFocus(currentRow); 
+        updateRowFocus(currentRow);
     }
 }
 
 
+function displayGameOverModal() {
+    document.getElementById("targetWordDisplay").textContent = targetWord;
+    document.getElementById("correctLetters").textContent = correctLetters;
+    document.getElementById("incorrectLetters").textContent = incorrectLetters;
+    const modal = document.getElementById("gameOverModal");
+    modal.classList.add("show");
+}
+
+
+function closeGameOverModal() {
+    const modal = document.getElementById("gameOverModal");
+    modal.classList.remove("show");
+}
+
 
 
 function restartGame() {
-    guessedLetters = {}; // Reset guessed letters tracking
+    guessedLetters = {};
+    const messageDiv = document.getElementById("message");
+    if (messageDiv) {
+        messageDiv.textContent = "";
+        messageDiv.classList.remove("show");
+    }
 
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
@@ -129,9 +168,8 @@ function restartGame() {
         updateRowFocus(currentRow);
     });
 
-    // Reset keyboard colors and remove 'revealed' class
     document.querySelectorAll(".key").forEach(key => {
-        key.classList.remove("correct", "present", "absent", "revealed"); // Clear all classes
+        key.classList.remove("correct", "present", "absent", "revealed"); 
     });
 }
 
@@ -156,7 +194,7 @@ function giveUp() {
 }
 
 function displayMessage(message) {
-    const messageDiv = document.getElementById("message");
+    const messageDiv = document.getElementById("message-container");
     if (!messageDiv) {
         console.error("Message container is missing.");
         return;
@@ -166,8 +204,9 @@ function displayMessage(message) {
 
     setTimeout(() => {
         messageDiv.classList.remove("show");
-    }, 2000);
+    }, 2000); 
 }
+
 
 function updateSquare(square, resultClass) {
     square.classList.add(resultClass);
@@ -213,18 +252,6 @@ function handleBackspace(e) {
     }
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-        const row = document.getElementsByClassName("row")[currentRow];
-        const isRowFilled = Array.from(row.children).every(square => square.value !== "");
-
-        if (isRowFilled) {
-            submitGuess();
-        } else {
-            displayMessage("Please fill in all squares before submitting.");
-        }
-    }
-});
 
 function createGrid() {
     const grid = document.getElementById("grid");
@@ -298,8 +325,10 @@ function handleSquareInput(e) {
 
 function updateRowFocus(rowIndex) {
     const rows = document.getElementsByClassName("row");
+    if (!rows[rowIndex]) return; // Check if row exists
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
+        if (!row) continue; // Ensure the row is defined
         const squares = row.children;
         for (let square of squares) {
             if (i === rowIndex) {
@@ -308,12 +337,13 @@ function updateRowFocus(rowIndex) {
             } else {
                 square.setAttribute("readonly", true);
                 square.classList.add("disabled");
-                square.addEventListener("focus", preventFocus);
             }
         }
     }
-    rows[rowIndex].children[0].removeAttribute("readonly");
-    rows[rowIndex].children[0].focus();
+    if (rows[rowIndex]) {
+        rows[rowIndex].children[0].removeAttribute("readonly");
+        rows[rowIndex].children[0].focus();
+    }
 }
 
 
@@ -393,4 +423,97 @@ function updateKeyboard(letter, status) {
 function toggleModal() {
     const modal = document.getElementById("infoModal");
     modal.classList.toggle("show");
+}
+
+function toggleSettingsModal() {
+    const modal = document.getElementById("settingsModal");
+    modal.classList.toggle("show");
+
+    if (modal.classList.contains("show")) {
+        document.addEventListener("click", closeModalOnOutsideClick);
+    } else {
+        document.removeEventListener("click", closeModalOnOutsideClick);
+    }
+}
+
+function closeModalOnOutsideClick(event) {
+    const modal = document.getElementById("settingsModal");
+    if (!modal.contains(event.target) && !event.target.closest(".settings-icon")) {
+        modal.classList.remove("show");
+        document.removeEventListener("click", closeModalOnOutsideClick);
+    }
+}
+
+function toggleElementVisibility(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        if (element.style.display === "none" || getComputedStyle(element).opacity === "0") {
+            fadeIn(element);
+        } else {
+            fadeOut(element);
+        }
+    }
+}
+
+function fadeIn(element) {
+    element.style.display = "block";
+    element.style.opacity = 0;
+    let opacity = 0;
+    const fadeInterval = setInterval(() => {
+        opacity += 0.1;
+        element.style.opacity = opacity;
+        if (opacity >= 1) {
+            clearInterval(fadeInterval);
+        }
+    }, 30);
+}
+
+function fadeOut(element) {
+    let opacity = 1;
+    const fadeInterval = setInterval(() => {
+        opacity -= 0.1;
+        element.style.opacity = opacity;
+        if (opacity <= 0) {
+            element.style.display = "none";
+            clearInterval(fadeInterval);
+        }
+    }, 30);
+}
+
+
+
+function toggleElementVisibility(elementId) {
+    const element = document.getElementById(elementId);
+    if (elementId === 'reveal') {
+        revealEnabled = element.style.display !== "none";
+    }
+    if (element) {
+        if (element.style.display === "none" || getComputedStyle(element).opacity === "0") {
+            fadeIn(element);
+        } else {
+            fadeOut(element);
+        }
+    }
+}
+
+
+
+function gameOver() {
+    if (!revealEnabled && completedRows === 6 && targetWord) {
+        document.getElementById("targetWordDisplay").textContent = targetWord;
+        document.getElementById("guessesUsed").textContent = guessesUsed;
+        document.getElementById("correctLetters").textContent = correctLetters;
+        document.getElementById("incorrectLetters").textContent = incorrectLetters;
+        showGameOverModal();
+    }
+}
+
+function showGameOverModal() {
+    const modal = document.getElementById("gameOverModal");
+    modal.classList.add("show");
+}
+
+function closeGameOverModal() {
+    const modal = document.getElementById("gameOverModal");
+    modal.classList.remove("show");
 }
