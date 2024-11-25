@@ -139,6 +139,81 @@ const questions = {
             choices: ["Consistency, Availability, and Partition Tolerance cannot be achieved simultaneously", "There is a trade-off between speed and security", "Databases can always be both consistent and available", "Every system must have a master node"], 
             correctAnswer: 0 
         },
+        { 
+            question: "In the Linux kernel, what does the 'niceness' level affect?", 
+            choices: ["The priority of network traffic", "The execution priority of processes", "The security level", "Disk I/O operations"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "Which of the following is NOT true about Big-O notation?", 
+            choices: ["Describes the upper bound of an algorithm's runtime", "Represents the worst-case scenario", "Is affected by constant factors", "Indicates the scalability of an algorithm"], 
+            correctAnswer: 2 
+        },
+        { 
+            question: "In object-oriented programming, which principle is focused on 'wrapping' data and methods into a single unit?", 
+            choices: ["Inheritance", "Encapsulation", "Polymorphism", "Abstraction"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "What does the CAP theorem state in distributed systems?", 
+            choices: ["Consistency, Availability, and Partition Tolerance cannot be achieved simultaneously", "There is a trade-off between speed and security", "Databases can always be both consistent and available", "Every system must have a master node"], 
+            correctAnswer: 0 
+        },
+        { 
+            question: "What is the purpose of the Paxos algorithm in distributed systems?", 
+            choices: ["To ensure consistent hashing of data", "To achieve consensus among distributed nodes", "To replicate data across systems", "To enable efficient leader election"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "In database indexing, what is a B-tree used for?", 
+            choices: ["Hashing data for faster lookups", "Efficiently storing and retrieving sorted data", "Performing full-text searches", "Organizing data in-memory for faster queries"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "In graph theory, what does Dijkstra's algorithm calculate?", 
+            choices: ["The minimum spanning tree of a graph", "The shortest path between nodes in a graph", "The strongly connected components", "The maximum flow in a network"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "What is the key advantage of using REST over SOAP for APIs?", 
+            choices: ["It supports stateful operations", "It is lightweight and simpler to implement", "It provides built-in security features", "It supports only JSON responses"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "What does the term 'idempotent' mean in HTTP methods?", 
+            choices: ["The request must include authentication", "The request can only be executed once", "The request produces the same result no matter how many times it is executed", "The request is always cached by the server"], 
+            correctAnswer: 2 
+        },
+        { 
+            question: "In functional programming, what is a 'pure function'?", 
+            choices: ["A function that modifies global state", "A function that takes no parameters", "A function that produces no side effects and has consistent output for the same input", "A function that only processes numbers"], 
+            correctAnswer: 2 
+        },
+        { 
+            question: "What is the purpose of a bloom filter in computer science?", 
+            choices: ["Sorting large datasets", "Checking membership of an element in a set with space efficiency", "Encrypting sensitive data", "Reducing database query time"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "What is the primary use of Docker containers in software development?", 
+            choices: ["Monitoring application performance", "Creating isolated environments to run applications consistently across different systems", "Scaling applications dynamically", "Testing application load"], 
+            correctAnswer: 1 
+        },
+        { 
+            question: "What does 'eventual consistency' mean in distributed databases?", 
+            choices: ["Data will be consistent only after a manual operation", "Data consistency is guaranteed at all times", "Data may not be consistent immediately but will eventually become consistent", "Data is replicated instantly across nodes"], 
+            correctAnswer: 2 
+        },
+        { 
+            question: "What is the purpose of the RAFT consensus algorithm?", 
+            choices: ["Efficient data replication", "Leader election in a distributed system", "Achieving fault tolerance through consensus", "Balancing network traffic"], 
+            correctAnswer: 2 
+        },
+        { 
+            question: "Which of the following best describes a 'promise' in JavaScript?", 
+            choices: ["A function that always resolves immediately", "An object representing a value that may be available now or in the future", "A synchronous callback function", "A reserved keyword for asynchronous functions"], 
+            correctAnswer: 1 
+        },
         {
             question: "In JavaScript, what is the purpose of the 'Symbol.iterator' property?",
             choices: [
