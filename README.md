@@ -10,12 +10,11 @@ Games Included
 2. Word Game
 
 
-
 ## 1. Trivia Game
 The Trivia Game is a knowledge-based quiz that spans a variety of categories, offering multiple-choice questions across general knowledge, coding, and fun topics. This game also includes a Speed Trivia mode, where players answer as many questions as possible within a time limit.
 - Categories:
 - General: Questions covering a wide range of topics.
-- Coding: Technical questions for programming enthusiasts.
+- Coding: Technical questions for programmers.
 - Funny: Light-hearted and humorous questions.
 
 
