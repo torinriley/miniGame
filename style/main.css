@@ -36,60 +36,6 @@ header {
     margin-bottom: 20px;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav li {
-    margin: 0 15px;
-}
-
-.game-icon {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.2s;
-}
-
-.game-icon:hover {
-    transform: scale(1.1);
-}
-
-
-main {
-    text-align: center;
-    max-width: 600px;
-    margin-top: 200px;
-    padding-bottom: 100px;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-
-.word-icon-light {
-    display: none;
-}
-.word-icon-dark {
-    display: inline;
-}
-
-.light-mode .word-icon-light {
-    display: inline;
-}
-.light-mode .word-icon-dark {
-    display: none;
-}
-
-
-
 
 #github-issue-link {
     position: fixed;
