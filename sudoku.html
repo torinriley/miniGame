@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Game</title>
+  <link rel="stylesheet" href="sudoku/sudoku.css">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  
+</head>
+<body>
+    <nav class="vertical-nav">
+        <a href="word.html" class="nav-link">
+            <img src="icons/word-ico-dark.svg" alt="Word Game Icon" class="nav-icon">
+            <span>Word</span>
+        </a>
+        <a href="#trivia" class="nav-link">
+            <img src="icons/trivia-icon.svg" alt="Trivia Game Icon" class="nav-icon">
+            <span>Trivia</span>
+        </a>
+    </nav>
+  <h1>Sudoku Game</h1>
+  <div id="sudoku-board"></div>
+  <div id="button-container">
+    <button id="give-up-button">Give Up</button>
+    <button id="reset-button">Reset</button>
+  </div>
+  <div id="end-screen" class="hidden">
+    <p id="end-message"></p>
+    <button id="restart-button">Restart</button>
+  </div>
+    <div id="github-issue-link">
+        <span>See an issue with this page? </span><a href="https://github.com/torinriley/miniGame.git" target="_blank">Fix it on GitHub</a>
+    </div>
+  <script src="sudoku/sudoku.js"></script>
+</body>
+</html>
