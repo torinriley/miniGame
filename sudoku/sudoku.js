@@ -3,9 +3,8 @@ const resetButton = document.getElementById("reset-button");
 const giveUpButton = document.getElementById("give-up-button");
 const cells = [];
 
-// Generate a solved Sudoku board
+
 function generateSolution() {
-    // Naive generation for a solved board (you can improve this with a backtracking algorithm)
     let solution = Array(9)
         .fill(0)
         .map(() => Array(9).fill(0));
@@ -58,7 +57,7 @@ function generateSolution() {
           }
           return false;
         }
-    // Fill diagonal subgrids
+    
     for (let i = 0; i < 9; i += 3) {
         fillDiagonalSubgrid(solution, i, i);
     }
@@ -76,10 +75,9 @@ function fillDiagonalSubgrid(board, row, col) {
     }
 }
 
-// Generate a puzzle by removing numbers
 function generatePuzzle(solution) {
     const puzzle = solution.map((row) => [...row]);
-    let cellsToRemove = 40; // Number of cells to remove
+    let cellsToRemove = 40; 
     while (cellsToRemove > 0) {
         const row = Math.floor(Math.random() * 9);
         const col = Math.floor(Math.random() * 9);
@@ -91,7 +89,7 @@ function generatePuzzle(solution) {
     return puzzle;
 }
 
-// Solve the board using backtracking
+
 function solveSudoku(board) {
     for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
@@ -127,7 +125,7 @@ function isInSubgrid(board, startRow, startCol, num) {
     return false;
 }
 
-// Shuffle numbers (utility function)
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -136,10 +134,10 @@ function shuffle(array) {
     return array;
 }
 
-// Create the Sudoku board
+
 function createBoard(puzzle) {
-    board.innerHTML = ""; // Clear the board
-    cells.length = 0; // Clear the cells array
+    board.innerHTML = "";
+    cells.length = 0;
     for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
             const cell = document.createElement("div");
@@ -155,7 +153,7 @@ function createBoard(puzzle) {
                 input.addEventListener("blur", () => cell.classList.remove("active"));
                 input.addEventListener("input", (e) => {
                     if (!/^[1-9]$/.test(e.target.value)) {
-                        e.target.value = ""; // Clear invalid input
+                        e.target.value = ""; 
                     }
                 });
                 cell.appendChild(input);
@@ -166,20 +164,20 @@ function createBoard(puzzle) {
     }
 }
 
-// Reset the board
+
 resetButton.addEventListener("click", () => {
     const solution = generateSolution();
     const puzzle = generatePuzzle(solution);
     createBoard(puzzle);
 });
 
-// Give up (reveal solution)
+
 giveUpButton.addEventListener("click", () => {
     const solution = generateSolution();
     createBoard(solution);
 });
 
-// Initialize game
+
 const solution = generateSolution();
 const puzzle = generatePuzzle(solution);
 createBoard(puzzle);
