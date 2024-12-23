@@ -229,45 +229,6 @@ button:disabled {
     opacity: 1; 
 }
 
-.vertical-nav {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: var(--text-color);
-    background-color: var(--square-bg-color);
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: var(--button-hover-color);
-    color: var(--text-color);
-}
-
-.nav-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.nav-link[href="/trivia"]:hover .nav-icon {
-    transform: scale(1.2);
-}
-
-.nav-link:not([href="/trivia"]):hover .nav-icon {
-    transform: scale(1.1);
-}
 
 .game-container {
     margin-left: 100px; 
