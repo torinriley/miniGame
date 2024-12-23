@@ -1,0 +1,39 @@
+.vertical-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+}
+
+.nav-link span {
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    margin-left: 10px; 
+}
+
+.nav-link:hover span {
+    opacity: 1; 
+}
+
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}

@@ -300,35 +300,6 @@ body.dark-mode button {
     animation: shake 0.5s;
 }
 
-.vertical-nav {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none;
-    color: var(--text-color);
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.nav-link:hover .nav-icon {
-    transform: scale(1.2);
-}
 
 .content {
     margin-left: 80px;
