@@ -290,3 +290,9 @@ button:disabled {
 #github-issue-link:hover {
     opacity: 1;
 }
+
+
+.small-icon img {
+    width: 30px; /* Adjusted from 40px to 30px */
+    height: 30px; /* Adjusted from 40px to 30px */
+}
