@@ -16,6 +16,13 @@
     --button-hover-color: #ccc;
 }
 
+.title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -58,4 +65,61 @@ header {
 
 #github-issue-link:hover {
     opacity: 1;
+}
+.game-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.game-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.game-card img {
+    width: 100px;
+    height: 100px;
+}
+
+.game-card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.game-card p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.play-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #8c8c8c; /* hot white */
 }

@@ -719,3 +719,11 @@ body.dark-mode button {
     opacity: 0;
     pointer-events: none;
 }
+
+.settings-icon {
+    transition: transform 0.5s ease;
+}
+
+.settings-icon:hover {
+    transform: rotate(90deg);
+}
