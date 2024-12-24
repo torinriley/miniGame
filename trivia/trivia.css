@@ -293,6 +293,6 @@ button:disabled {
 
 
 .small-icon img {
-    width: 30px; /* Adjusted from 40px to 30px */
-    height: 30px; /* Adjusted from 40px to 30px */
+    width: 30px;
+    height: 30px;
 }
